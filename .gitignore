@@ -1,0 +1,41 @@
+# Binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Build output
+out/
+
+# Vendor (if used)
+vendor/
+
+# Config files with secrets
+.env
+configs/config.yaml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Migration tool
+migrate/
+
+# AI
+.claude/
+.kilo/
+.codex/
+.bilybo/
+.quanty
