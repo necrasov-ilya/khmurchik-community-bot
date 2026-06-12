@@ -6,7 +6,6 @@ require (
 	github.com/go-playground/validator/v10 v10.30.3
 	github.com/go-telegram-bot-api/telegram-bot-api/v5 v5.5.1
 	github.com/jackc/pgx/v5 v5.10.0
-	github.com/robfig/cron/v3 v3.0.1
 	github.com/spf13/viper v1.21.0
 	go.uber.org/zap v1.28.0
 )

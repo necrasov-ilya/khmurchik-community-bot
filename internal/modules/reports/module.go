@@ -1,10 +1,9 @@
-package moderation
+package reports
 
 import (
 	"context"
 
 	"github.com/evart2006/khmurchik-community-bot/internal/bot"
-	"github.com/evart2006/khmurchik-community-bot/internal/middleware"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"go.uber.org/zap"
@@ -20,20 +19,12 @@ func NewModule(bot *tgbotapi.BotAPI, db *pgxpool.Pool, logger *zap.Logger) *Modu
 	return &Module{bot: bot, db: db, logger: logger}
 }
 
-func (m *Module) Name() string    { return "moderation" }
+func (m *Module) Name() string    { return "reports" }
 func (m *Module) Version() string { return "1.0.0" }
 
 func (m *Module) Register(bot *tgbotapi.BotAPI, router *bot.Router) error {
-	checker := middleware.NewAdminChecker(bot, m.logger)
-	svc := NewService(bot, m.db, m.logger, checker)
-
-	router.Register("mute", svc.MuteHandler(bot))
-	router.Register("ban", svc.BanHandler(bot))
-	router.Register("kick", svc.KickHandler(bot))
-	router.Register("unmute", svc.UnmuteHandler(bot))
-	router.Register("balabol", svc.BalabolHandler(bot))
-	router.Register("unbalabol", svc.UnbalabolHandler(bot))
-
+	svc := NewService(bot, m.db, m.logger)
+	router.Register("report", svc.ReportHandler(bot))
 	return nil
 }
 

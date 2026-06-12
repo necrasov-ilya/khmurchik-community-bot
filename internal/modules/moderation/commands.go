@@ -93,3 +93,22 @@ func parseKickArgs(args string, replyTo *tgbotapi.Message, userRepo *repository.
 func parseUnmuteArgs(args string, replyTo *tgbotapi.Message, userRepo *repository.UserRepository) (int64, error) {
 	return parseTarget(args, replyTo, userRepo)
 }
+
+func parseBalabolArgs(args string, replyTo *tgbotapi.Message, userRepo *repository.UserRepository) (int64, string, error) {
+	args = strings.TrimSpace(args)
+	targetID, err := parseTarget(args, replyTo, userRepo)
+	if err != nil {
+		return 0, "", err
+	}
+
+	reason := args
+	if strings.HasPrefix(reason, "@") {
+		parts := strings.Fields(reason)
+		if len(parts) > 1 {
+			reason = strings.Join(parts[1:], " ")
+		} else {
+			reason = ""
+		}
+	}
+	return targetID, reason, nil
+}

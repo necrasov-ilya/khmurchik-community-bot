@@ -6,6 +6,6 @@ import (
 
 func StartHandler(bot *tgbotapi.BotAPI) func(tgbotapi.Message) {
 	return func(msg tgbotapi.Message) {
-		bot.Send(tgbotapi.NewMessage(msg.Chat.ID, "Привет! Я бот чатика Павла Хмурчика. Используй /help для списка команд."))
+		_, _ = bot.Send(tgbotapi.NewMessage(msg.Chat.ID, "Привет! Я бот модерации сообщества. Используй /help для списка команд."))
 	}
 }

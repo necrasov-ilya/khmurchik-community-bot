@@ -6,6 +6,6 @@ import (
 
 func UnknownHandler(bot *tgbotapi.BotAPI) func(tgbotapi.Message) {
 	return func(msg tgbotapi.Message) {
-		bot.Send(tgbotapi.NewMessage(msg.Chat.ID, "Неизвестная команда. Используй /help для списка команд."))
+		_, _ = bot.Send(tgbotapi.NewMessage(msg.Chat.ID, "Неизвестная команда. Используй /help для списка команд."))
 	}
 }

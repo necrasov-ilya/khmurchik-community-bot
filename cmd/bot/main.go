@@ -19,7 +19,7 @@ func main() {
 		panic(err)
 	}
 
-	l, err := logger.New()
+	l, err := logger.New(cfg.Log.Level)
 	if err != nil {
 		panic(err)
 	}

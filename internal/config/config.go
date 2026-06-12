@@ -1,19 +1,21 @@
 package config
 
 type Config struct {
-	Bot       BotConfig       `mapstructure:"bot"`
-	Server    ServerConfig    `mapstructure:"server"`
-	Database  DatabaseConfig  `mapstructure:"database"`
-	Scheduler SchedulerConfig `mapstructure:"scheduler"`
+	Bot      BotConfig      `mapstructure:"bot"`
+	Server   ServerConfig   `mapstructure:"server"`
+	Database DatabaseConfig `mapstructure:"database"`
+	Defaults DefaultsConfig `mapstructure:"defaults"`
+	Log      LogConfig      `mapstructure:"log"`
 }
 
 type BotConfig struct {
-	Token        string `mapstructure:"token"        validate:"required"`
-	TargetChatID int64  `mapstructure:"target_chat_id" validate:"required"`
+	Token        string `mapstructure:"token" validate:"required"`
+	TargetChatID int64  `mapstructure:"target_chat_id"`
 }
 
 type ServerConfig struct {
-	PollTimeout int32 `mapstructure:"poll_timeout" validate:"required"`
+	PollTimeout    int32    `mapstructure:"poll_timeout" validate:"required,gte=1,lte=120"`
+	AllowedUpdates []string `mapstructure:"allowed_updates"`
 }
 
 type DatabaseConfig struct {
@@ -28,6 +30,13 @@ type DatabaseConfig struct {
 	ConnMaxLifetime string `mapstructure:"conn_max_lifetime"`
 }
 
-type SchedulerConfig struct {
-	Timezone string `mapstructure:"timezone" validate:"required"`
+type DefaultsConfig struct {
+	Timezone        string `mapstructure:"timezone" validate:"required"`
+	GreetingTime    string `mapstructure:"greeting_time" validate:"required"`
+	GreetingEnabled bool   `mapstructure:"greeting_enabled"`
+	GreetingMessage string `mapstructure:"greeting_message" validate:"required"`
+}
+
+type LogConfig struct {
+	Level string `mapstructure:"level"`
 }

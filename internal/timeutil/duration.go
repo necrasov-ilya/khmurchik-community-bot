@@ -21,7 +21,7 @@ func ParseDuration(s string) (time.Duration, error) {
 		return 0, fmt.Errorf("invalid duration number %q: %w", numStr, err)
 	}
 
-	if num < 0 {
+	if num <= 0 {
 		return 0, fmt.Errorf("duration must be positive: %q", s)
 	}
 
