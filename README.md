@@ -1,4 +1,4 @@
-# khmurchik-community-bot
+# simple-moderation-community-bot
 
 Telegram-бот для модерации community-чатов на Go.
 
